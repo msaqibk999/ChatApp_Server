@@ -22,4 +22,4 @@ test:
 
 production:
   <<: *default
-  database: flatiron_mod3_development_production
+  database: flatiron_mod3_production
