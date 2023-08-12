@@ -2,14 +2,15 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
 
-  # Set the Action Cable URL to your domain
-  config.action_cable.url = "wss://chatappserver1.onrender.com/cable"
+   # Set the Action Cable URL to your domain
+   config.action_cable.url = "wss://chatappserver1.onrender.com/cable"
 
-  # Allow all request origins
-  config.action_cable.disable_request_forgery_protection = true
-
-  # Settings specified here will take precedence over those in config/application.rb.
-
+   # Disable request forgery protection for Action Cable
+   config.action_cable.disable_request_forgery_protection = true
+ 
+   # Allow only the specified origin
+   config.action_cable.allowed_request_origins = [ "https://msaqibk999.github.io/ChatApp_Client/" ]
+ 
   # Use a different cache store in production.
   config.cache_store = :redis_cache_store, {
     url: ENV['REDIS_URL']
