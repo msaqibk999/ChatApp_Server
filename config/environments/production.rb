@@ -6,7 +6,7 @@ Rails.application.configure do
   config.action_cable.url = "wss://chatappserver1.onrender.com/cable"
 
   # Allow all request origins
-  config.action_cable.allowed_request_origins = [ "https://chatappserver1.onrender.com" ]
+  config.action_cable.disable_request_forgery_protection = true
 
   # Settings specified here will take precedence over those in config/application.rb.
 
