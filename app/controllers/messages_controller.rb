@@ -37,6 +37,16 @@ class MessagesController < ApplicationController
   def destroy
     @message.destroy
   end
+  
+  # DELETE ALL MESSAGES
+  def destroy_all
+    if authenticate_request
+      Message.destroy_all
+      render json: { message: 'All messages have been deleted.' }
+    else
+      render json: { error: 'Unauthorized' }, status: :unauthorized
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -47,5 +57,11 @@ class MessagesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def message_params
       params.require(:message).permit(:body, :sender)
+    end
+    #Authenticate delete request is from me
+    def authenticate_request
+      secret_password = ENV["DELETE_CHAT_PASSWORD"]
+      request_password = request.headers["X-Delete-Chat-Password"]
+      secret_password == request_password
     end
 end

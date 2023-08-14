@@ -8,8 +8,6 @@ gem "rails", "~> 7.0.6"
 
 # Use sqlite3 as the database for Active Record
 gem "pg"
-
-gem 'whenever', require: false
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 
