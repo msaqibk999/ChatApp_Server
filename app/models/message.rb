@@ -4,6 +4,7 @@ class Message < ApplicationRecord
     validates :body, presence: true
     validates :sender, presence: true, length: { minimum: 10 }
     after_create_commit :broadcast_message
+    after_create :send_push_notifications
   
     private
   
