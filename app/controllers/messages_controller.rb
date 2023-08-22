@@ -15,14 +15,22 @@ class MessagesController < ApplicationController
 
   # POST /messages
   def create
-    @message = Message.new(message_params)
+    phone_number = message_params[:sender]
+    @user = User.find_by(phone_number: phone_number)
 
-    if @message.save
-      render json: @message, status: :created, location: @message
+    if @user
+      @message = @user.messages.build(message_params)
+
+      if @message.save
+        render json: @message, status: :created, location: @message
+      else
+        render json: @message.errors, status: :unprocessable_entity
+      end
     else
-      render json: @message.errors, status: :unprocessable_entity
+      render json: { error: 'User not found' }, status: :unprocessable_entity
     end
   end
+  
 
   # PATCH/PUT /messages/1
   def update
@@ -60,7 +68,8 @@ class MessagesController < ApplicationController
     end
     #Authenticate delete request is from me
     def authenticate_request
-      secret_password = ENV["DELETE_CHAT_PASSWORD"]
+      # secret_password = ENV["DELETE_CHAT_PASSWORD"]
+      secret_password = "sqk001"
       request_password = request.headers["X-Delete-Chat-Password"]
       secret_password == request_password
     end

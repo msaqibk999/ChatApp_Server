@@ -20,7 +20,8 @@ gem "puma", "~> 5.0"
 # Use hiredis to get better performance than the "redis" gem
 gem 'hiredis'
 
-
+# Use push notification from firebase
+gem 'fcm'
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
