@@ -1,6 +1,23 @@
 # config/sidekiq.yml
 :concurrency: 5
-:pidfile: tmp/pids/sidekiq.pid
-:logfile: ./log/sidekiq.log
-:queues:
-  - default
+:development:
+  :concurrency: 1
+  :pidfile: tmp/pids/sidekiq.pid
+  :logfile: ./log/sidekiq.log
+  :queues:
+    - default
+:production:
+  :concurrency: 10  # Adjust based on your production needs
+  :pidfile: tmp/pids/sidekiq.pid
+  :logfile: ./log/sidekiq.log
+  :queues:
+    - default
+  :production: &production
+    :concurrency: 10  # Adjust based on your production needs
+    :pidfile: tmp/pids/sidekiq.pid
+    :logfile: ./log/sidekiq.log
+    :queues:
+      - default
+    :environment: production
+    :timeout: 30
+    :log_format: json
