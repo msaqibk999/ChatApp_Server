@@ -72,6 +72,7 @@ GEM
       msgpack (~> 1.2)
     builder (3.2.4)
     concurrent-ruby (1.2.2)
+    connection_pool (2.4.1)
     crass (1.0.6)
     date (3.3.3)
     debug (1.8.0)
@@ -171,9 +172,16 @@ GEM
       zeitwerk (~> 2.5)
     rake (13.0.6)
     redis (4.8.1)
+    redis-client (0.16.0)
+      connection_pool
     reline (0.3.7)
       io-console (~> 0.5)
     ruby2_keywords (0.0.5)
+    sidekiq (7.1.2)
+      concurrent-ruby (< 2)
+      connection_pool (>= 2.3.0)
+      rack (>= 2.2.4)
+      redis-client (>= 0.14.0)
     signet (0.17.0)
       addressable (~> 2.8)
       faraday (>= 0.17.5, < 3.a)
@@ -202,6 +210,7 @@ DEPENDENCIES
   rack-cors
   rails (~> 7.0.6)
   redis
+  sidekiq
   tzinfo-data
 
 RUBY VERSION
