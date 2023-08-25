@@ -28,5 +28,19 @@ class UsersController < ApplicationController
         end
       end
 
+      def delete_token
+        user = User.find_by(phone_number: params[:phone_number])
+    
+        if user
+          if user.update(token: nil)
+            render json: { message: 'Token deleted successfully' }
+          else
+            render json: { error: 'Token deletion failed' }, status: :unprocessable_entity
+          end
+        else
+          render json: { error: 'User not found with the provided phone number' }, status: :not_found
+        end
+      end
+
   end
   

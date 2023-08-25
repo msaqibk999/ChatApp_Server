@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   post '/login', to: 'users#create_or_find_user'
   patch 'users/update_token', to: 'users#update_token'
+  post '/users/delete_token', to: 'users#delete_token'
 
   resources :messages do
     collection do
