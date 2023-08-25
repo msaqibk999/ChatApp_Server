@@ -11,8 +11,10 @@ class PushNotificationWorker
         priority: 'high',
         data: { message: message.body },
         notification: {
+          icon: "https://cdn3d.iconscout.com/3d/premium/thumb/chat-talking-5143250-4312620.png",
           title: "New Message from #{message.sender}",
           body: message.body,
+          click_action: "https://6a981bd7.chatapp-client.pages.dev/",
           sound: 'default',
         }
       }
